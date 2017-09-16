@@ -1,6 +1,6 @@
-함수
+//함수
 
-익명함수의 실행순서
+//익명함수의 실행순서
 
 
 function sumAll(){
@@ -15,11 +15,6 @@ function sumAll(){
 }
 
 alert(sumAll(1,2,3,4,5,6,7,8))
-
-화살표 함수
-
-
-프로토타입
 
 var func = function() {
 	//alert(1);

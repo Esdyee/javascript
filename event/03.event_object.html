@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1 id="header">Click</h1>
+	<div id="event_object">이벤트 객체 테스트</div>
+</body>
+<script>
+//이벤트 발생 객체와 이벤트 객체
+
+/*누가? 이 이벤트를 발생시켰는가 확인하기 위한 예제
+이벤트 리스너 안에서 this 키워드를 사용하면 이벤트가 발생한 객체를 찾을 수 있다.
+*/
+window.onload = function(){
+	document.getElementById('header').onclick = function (){
+		/*아래 alert창으로 객체를 불러온다.
+		h1엘리멘트를 가져오기 떄문에 [object HTMLHeadingElement]가 출력될 것이다.*/
+		//alert(this);
+
+		/*이벤트 발생 객체의 스타일 변경*/
+		this.style.color = "orange";
+		this.style.backgroundColor = "red";
+	};
+
+	//이벤트 객체 가져오기
+	document.getElementById("event_object").onclick = function(e){
+		var event = e || window.event;
+		document.body.innerHTML = "";
+
+		for (var key in event) {
+			document.body.innerHTML += "<p>" + key + ": " + event[key] + "</p>";
+		}
+	}
+
+	/*
+	e가 존재하면 e를 변수 event에 집어 넣는다.
+	e가 없어서 undefined이면 window.event 속성을 event 변수에 넣는다.
+	*/
+};
+
+</script>
+</html>

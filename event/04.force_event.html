@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<button id="buttonA">ButtonA</button>
+	<button id="buttonB">ButtonB</button>
+	<h1>Button A - <span id="counterA">0</span></h1>
+	<h1>Button B - <span id="counterB">0</span></h1>
+</body>
+<script>
+	window.onload = function(){
+		/*일반적인 이벤트 호출*/
+		var buttonA = document.getElementById("buttonA");
+		var buttonB = document.getElementById("buttonB");
+		var counterA = document.getElementById("counterA");
+		var counterB = document.getElementById("counterB");
+
+		//이벤트를 연결합니다.
+		buttonA.onclick = function(){
+			console.log(counterA.innerHTML);
+			counterA.innerHTML = Number(counterA.innerHTML) + 1;
+		};
+		buttonB.onclick = function(){
+			counterB.innerHTML = Number(counterB.innerHTML) + 1;
+		};
+
+		/*B를 클릭해서 A의 숫자도 Count 시키기*/
+		// buttonB.onclick = function (){
+		// 	counterB.innerHTML = Number(counterB.innerHTML) + 1;
+		// 	counterA.innerHTML = Number(counterA.innerHTML) + 1;
+		// }
+
+		/*이벤트 강제 실행해서 A의 숫자 Count 시키기*/
+		buttonB.onclick = function(){
+			counterB.innerHTML = Number(counterB.innerHTML) + 1;
+			//강제 Count 시키는 부분
+			buttonA.onclick();
+		};
+
+	}
+</script>
+</html>

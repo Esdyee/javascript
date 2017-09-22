@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>event-delivery</title>
+	<style>
+		*{border:3px solid black;}
+	</style>
+</head>
+<body>
+<!--이벤트 버블링, 이벤트 캡쳐링-->
+<!--
+실행순서 속도가
+paragraph -> header -> inner-div -> outer-div 순서임
+즉, 자식부터 부모로 실행되는 것을 확인
+자식->부모 순서로 실행되는 것을 이벤트 버블링이라고 함.
+부모->자식 순서로 실행되는 것을 이벤트 캡쳐링이라고 함.
+-->
+	<div onclick="alert('outer-div')">
+		<div onclick="alert('inner-div')">
+			<h1 onclick="alert('header')">
+				<p onclick="alert('paragraph')">Paragraph_버블링</p>
+			</h1>
+		</div>
+	</div>
+<!---->
+	<h1 id="header">
+		<p id="paragraph">Paragraph_캡처링</p>
+	</h1>
+</body>
+<script>
+window.onload = function(){
+	document.getElementById("header").onclick = function(){
+		alert("header");
+	}
+	document.getElementById("paragraph").onclick = function(e){
+		//이벤트 객체 처리
+		var event = e || window.event;
+
+		//이벤트 발생 알림
+		alert("paragraph");
+
+		//이벤트 전달 제거
+		/*
+		즉, 이것도 버블링이 일어나서 paragraph -> header로 실행됨
+		그래서 이벤트 전달을 막아 header 경고창을 출력하지 않게 함.
+		(그런데 캡쳐링을 굳이 쓰는 이유는 필자논 모르겠음.)
+		*/
+
+		//IE
+		event.cancelBubble = true;
+
+		//IE 이외 브라우저
+		if(event.stopPropagation){
+			event.stopPropagation();
+		}
+
+		/*
+		결과 : paragraph는 실행되나 header는 alert로 표현 안됨
+		*/
+	}
+}
+
+</script>
+</html>

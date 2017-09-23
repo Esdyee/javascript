@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>IE event</title>
+</head>
+<body>
+	<h1 id="my-header">Click</h1>
+</body>
+<script>
+	//attachEvent(eventProperty, eventListener);
+	//detachEvent(eventProperty, eventListener);
+
+	window.attachEvent('onload', function(){
+		var header = document.getElementById('my-header');
+
+		//이벤트를 연결합니다.
+		header.attachEvent('onclick', function(){ alert('click'); });
+		header.attachEvent('onclick', function(){ alert('click'); });
+		header.attachEvent('onclick', function(){ alert('click'); });
+
+
+		//
+	});
+</script>
+</html>

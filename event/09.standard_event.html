@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>standard event</title>
+</head>
+<body>
+	<h1 id="my-header">click</h1>
+</body>
+<script>
+window.onload = function(){
+	var header = document.getElementById('my-header');
+
+	if(header.attachEvent){
+		//IE일 때 동작하는 스크립트
+		var handler = function(){
+			window.event.srcElement.style.color = 'red';
+			window.event.srcElement.detachEvent('onclick', handler);
+		}
+		header.attachEvent('onclick', handler);
+	}else{
+		//IE 이외 동작하는 스크립트
+		var handler = function() {
+			this.style.color = 'red';
+			this.removeEventListener('click', handler);
+		}
+		header.addEventListener('click', handler);
+	}
+
+	// header.addEventListener('click', function(){
+	// 	//this는 변수 header안에 담겨 있는 객체를 의미함
+	// 	this.innerHTML += '+';
+	// })
+}
+</script>
+</html>
